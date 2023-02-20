@@ -1,0 +1,8 @@
+# directories
+logs
+build
+node_modules
+certificates
+
+# files
+.env

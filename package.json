@@ -1,0 +1,24 @@
+{
+  "name": "watch-together",
+  "version": "0.1.0",
+  "description": "track and share your favorite movies and shows",
+  "scripts": {
+    "release:patch": "./node_modules/standard-version/bin/cli.js --release-as patch && pnpm run release",
+    "release:minor": "./node_modules/standard-version/bin/cli.js --release-as minor && pnpm run release",
+    "release:major": "./node_modules/standard-version/bin/cli.js --release-as major && pnpm run release",
+    "release": "git push --follow-tags origin master && pnpm release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Norviah/watch-together.git"
+  },
+  "author": "norviah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Norviah/watch-together/issues"
+  },
+  "homepage": "https://github.com/Norviah/watch-together#readme",
+  "devDependencies": {
+    "standard-version": "^9.5.0"
+  }
+}
