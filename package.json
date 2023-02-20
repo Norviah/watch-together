@@ -6,7 +6,7 @@
     "release:patch": "./node_modules/standard-version/bin/cli.js --release-as patch && pnpm run release",
     "release:minor": "./node_modules/standard-version/bin/cli.js --release-as minor && pnpm run release",
     "release:major": "./node_modules/standard-version/bin/cli.js --release-as major && pnpm run release",
-    "release": "git push --follow-tags origin master && pnpm release"
+    "release": "git push --follow-tags origin master"
   },
   "repository": {
     "type": "git",
