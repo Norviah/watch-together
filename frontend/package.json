@@ -2,10 +2,10 @@
   "name": "frontend",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "./node_modules/next/dist/bin/next next dev",
+    "build": "./node_modules/next/dist/bin/next next build",
+    "start": "./node_modules/next/dist/bin/next next start",
+    "lint": "./node_modules/next/dist/bin/next lint --fix"
   },
   "repository": {
     "type": "git",
