@@ -25,4 +25,4 @@ git pull > /dev/null 2>&1
 pnpm install > /dev/null 2>&1
 
 # Finally, we'll start the server again.
-pm2 start pnpm --name "$name" --cwd "$root/backend" -- start > /dev/null 2>&1
+pm2 start pnpm --name "$name" --cwd "$root" -- start > /dev/null 2>&1
