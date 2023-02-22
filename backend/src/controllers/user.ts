@@ -1,10 +1,11 @@
-import { Router } from 'express';
-import { StatusCodes } from 'http-status-codes';
+import { logger } from '@/structs/Logger';
 import { client } from '@/util/client';
 import { hashSync } from 'bcryptjs';
+import { Router } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
-import type { Request, Response } from 'express';
 import type { User } from '@prisma/client';
+import type { Request, Response } from 'express';
 
 export const router: Router = Router();
 
@@ -76,7 +77,11 @@ router.post('/signup', async (request: Request<unknown, unknown, { email: string
 
   // If the user does not exist within the database, we can create a new user
   // within the database with the provided information.
-  await client.user.create({ data: { ...request.body, password: hashSync(request.body.password) } });
+  const user: User = await client.user.create({
+    data: { ...request.body, password: hashSync(request.body.password) },
+  });
+
+  logger.success(`created user: ${user.email} ${user.id}`, { title: 'user/signup', subDir: 'user/signup' });
 
   // Once the user has been created, we'll return a `200` status code to
   // indicate that the user was created successfully. We don't need to catch any
