@@ -146,7 +146,7 @@ router.get('/signin', async (request: Request<unknown, unknown, { email: string;
   // `Forbidden` status code to indicate that the desired user does not exist
   // within the database.
   if (!user) {
-    return response.status(StatusCodes.UNAUTHORIZED);
+    return response.sendStatus(StatusCodes.UNAUTHORIZED);
   }
 
   // Now that we have a reference to the user, we can compare the provided
@@ -156,7 +156,7 @@ router.get('/signin', async (request: Request<unknown, unknown, { email: string;
   const authorized: boolean = await compare(request.body.password, user.password);
 
   if (!authorized) {
-    return response.status(StatusCodes.UNAUTHORIZED);
+    return response.sendStatus(StatusCodes.UNAUTHORIZED);
   }
 
   // If the user was authorized, we can then generate an access and refresh
