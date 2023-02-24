@@ -4,6 +4,10 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import { Component } from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
+
+import * as themes from '@/src/util/themes';
 
 import type { AppProps } from 'next/app';
 
@@ -25,6 +29,11 @@ export default class App extends Component<AppProps> {
    */
   render() {
     const { Component, pageProps } = this.props;
-    return <Component {...pageProps} />;
+    return (
+      <ThemeProvider theme={themes.LIGHT}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    );
   }
 }
