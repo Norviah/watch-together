@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7beefca4-77c3-42c7-a1f0-28bd4df891d6",
+		"_postman_id": "85c30156-bfe0-4aa0-b578-db81c3387841",
 		"name": "Endpoints",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11432529"
@@ -30,6 +30,80 @@
 					"path": [
 						"user",
 						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/signin",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"email@gmail.com\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/user/signin",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"user",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/refresh",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZhMTYxOTYxLTRkZDgtNDg2OC1hZGE5LTFlMTkwZDJlNjJkNiIsImlhdCI6MTY3NzIwNzQ5MSwiZXhwIjoxNjc3ODEyMjkxfQ.0FLWAv31wlG67LHHUk4iQMNoO8eG35jCUZw-GMQVepA\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/user/refresh",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"user",
+						"refresh"
 					]
 				}
 			},
