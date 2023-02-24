@@ -2,35 +2,36 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Watch Together",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "license": {
+      "name": "MIT",
+      "url": "https://raw.githubusercontent.com/Norviah/watch-together/master/LICENSE"
+    }
   },
+  "x-tagGroups": [
+    {
+      "name": "User Management",
+      "tags": [
+        "user"
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operations related to a user."
+    }
+  ],
   "paths": {
-    "/docs/swagger.json": {
-      "get": {
-        "summary": "The OpenAPI specification.",
-        "description": "Get the OpenAPI specification.",
-        "responses": {
-          "200": {
-            "description": "The OpenAPI specification.",
-            "content": {
-              "type": "object"
-            }
-          },
-          "500": {
-            "description": "An internal error has occurred."
-          }
-        }
-      }
-    },
     "/user/signup": {
       "post": {
-        "description": "Create a new user.",
+        "summary": "New user",
+        "description": "Create a new user within the database.",
         "tags": [
           "user"
         ],
         "requestBody": {
           "description": "The user to create.",
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -38,23 +39,19 @@
                 "properties": {
                   "email": {
                     "type": "string",
-                    "description": "The email address of the user.",
-                    "required": true
+                    "description": "The email address of the user."
                   },
                   "password": {
                     "type": "string",
-                    "description": "The password of the user.",
-                    "required": true
+                    "description": "The password of the user."
                   },
                   "firstName": {
                     "type": "string",
-                    "description": "The first name of the user.",
-                    "required": true
+                    "description": "The first name of the user."
                   },
                   "lastName": {
                     "type": "string",
-                    "description": "The last name of the user.",
-                    "required": true
+                    "description": "The last name of the user."
                   }
                 }
               }
@@ -73,8 +70,113 @@
           }
         }
       }
+    },
+    "/user/signin": {
+      "get": {
+        "summary": "Authenticate user",
+        "description": "Retrieve an authentication and refresh token for the user.",
+        "tags": [
+          "user"
+        ],
+        "requestBody": {
+          "description": "Information of the desired user to authenticate.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "The email address of the user."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "The password of the user."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The specified user was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access": {
+                      "type": "string",
+                      "description": "The access token for the user."
+                    },
+                    "refresh": {
+                      "type": "string",
+                      "description": "The refresh token for the user."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The provided credentials are invalid."
+          },
+          "500": {
+            "description": "An internal error has occurred."
+          }
+        }
+      }
+    },
+    "/user/validate": {
+      "get": {
+        "summary": "Refresh an access token",
+        "description": "Returns a new access token for the user.",
+        "tags": [
+          "user"
+        ],
+        "requestBody": {
+          "description": null,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refresh": {
+                    "type": "string",
+                    "description": "The refresh token for the user."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A new access token was generated for the user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access": {
+                      "type": "string",
+                      "description": "The access token for the user."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The provided refresh token is invalid."
+          },
+          "500": {
+            "description": "An internal error has occurred."
+          }
+        }
+      }
     }
   },
-  "components": {},
-  "tags": []
+  "components": {}
 }
