@@ -167,7 +167,7 @@ export default class App extends Component<AppProps, AppState> {
                   <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  {capitalize(route)}
+                  {router.route.toLowerCase() !== '/_error' && capitalize(route)}
                 </Typography>
                 <ThemeSelector />
               </Toolbar>
